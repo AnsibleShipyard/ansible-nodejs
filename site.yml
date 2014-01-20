@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  sudo: True
+  vars:
+    version: "0.1.0"
+    node_version: "0.10.24"
+    node_version_tag: "v{{node_version}}"
+    node_name: "node-v{{node_version_tag}}"
+    file_name: "{{node_name}}.tar.gz"
+    base_url: "http://nodejs.org/dist/v{{node_version}}/{{file_name}}"
+
+  tasks:
+    - name: download nodejs v{{node_version_tag}}
+      get_url: url={{base_url}} dest=/tmp/{{file_name}}
+
+    - name: unpack nodejs {{node_version_tag}}
+      command: tar -xvzf {{file_name}} chdir=/tmp
+
+    - name: compile and install nodejs {{node_version_tag}}
+      shell: ./configure && make && make install chdir=/tmp/{{node_name}}
+      sudo: true
