@@ -28,12 +28,12 @@
         - libsasl2-dev
         - libcurl3
         
-    - name: download nodejs v{{node_version_tag}}
+    - name: Download nodejs v{{node_version_tag}}
       get_url: url={{base_url}} dest=/tmp/{{file_name}}
 
-    - name: unpack nodejs {{node_version_tag}}
+    - name: Unpack nodejs {{node_version_tag}}
       command: tar -xvzf {{file_name}} chdir=/tmp
 
-    - name: compile and install nodejs {{node_version_tag}}
+    - name: Compile and install nodejs {{node_version_tag}}
       shell: ./configure && make && make install chdir=/tmp/{{node_name}}
       sudo: true
