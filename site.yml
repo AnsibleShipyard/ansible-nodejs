@@ -2,15 +2,32 @@
 
 - hosts: all
   sudo: True
+  tasks:
+    - action: group_by key={{ ansible_distribution }}
+
+- hosts: Ubuntu
+  gather_facts: no
+  sudo: True
   vars:
     version: "0.1.0"
     node_version: "0.10.24"
     node_version_tag: "v{{node_version}}"
-    node_name: "node-v{{node_version_tag}}"
+    node_name: "node-{{node_version_tag}}"
     file_name: "{{node_name}}.tar.gz"
     base_url: "http://nodejs.org/dist/v{{node_version}}/{{file_name}}"
-
   tasks:
+    - name: Install os packages
+      apt: pkg={{item}} state=present update_cache=yes
+      with_items: 
+        - wget
+        - curl
+        - g++
+        - gcc
+        - libcurl4-openssl-dev
+        - libsasl2-2
+        - libsasl2-dev
+        - libcurl3
+        
     - name: download nodejs v{{node_version_tag}}
       get_url: url={{base_url}} dest=/tmp/{{file_name}}
 
