@@ -28,7 +28,7 @@
         - libsasl2-dev
         - libcurl3
         
-    - name: Download nodejs v{{node_version_tag}}
+    - name: Download nodejs {{node_version_tag}}
       get_url: url={{base_url}} dest=/tmp/{{file_name}}
 
     - name: Unpack nodejs {{node_version_tag}}
