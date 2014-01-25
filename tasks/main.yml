@@ -1,0 +1,13 @@
+---
+- include: Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Download nodejs {{nodejs_version_tag}}
+  get_url: url={{nodejs_base_url}} dest=/tmp/{{nodejs_file_name}}
+
+- name: Unpack nodejs {{nodejs_version_tag}}
+  command: tar -xvzf {{nodejs_file_name}} chdir=/tmp
+
+- name: Compile and install nodejs {{nodejs_version_tag}}
+  shell: ./configure && make && make install chdir=/tmp/{{nodejs_file_tag}}
+  sudo: true
