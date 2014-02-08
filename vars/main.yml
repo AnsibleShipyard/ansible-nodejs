@@ -1,5 +1,5 @@
 ---
-nodejs_playbook_version: "0.1.1"
+nodejs_playbook_version: "0.1.2"
 nodejs_version: "0.10.24"
 nodejs_version_tag: "v{{nodejs_version}}"
 nodejs_file_tag: "node-{{nodejs_version_tag}}"
