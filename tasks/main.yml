@@ -20,3 +20,7 @@
   shell: ./configure --prefix={{nodejs_path}} && make && make install chdir=/tmp/{{nodejs_file_tag}}
   sudo: true
   when: wanted_version_installed.rc == 1
+
+- name: NPM Install global packages
+  npm: name={{item}} global=yes
+  with_items: "{{nodejs_global_packages}}"

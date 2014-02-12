@@ -1,7 +1,7 @@
 ---
 - name: Install os packages
   apt: pkg={{item}} state=present update_cache=yes
-  with_items: 
+  with_items:
     - wget
     - curl
     - g++
