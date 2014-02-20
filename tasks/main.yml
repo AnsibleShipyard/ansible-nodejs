@@ -2,6 +2,9 @@
 - include: Debian.yml
   when: ansible_os_family == "Debian"
 
+- include: RedHat.yml
+  when: ansible_os_family == "RedHat"
+
 - name: Checking installed version of nodejs
   shell: /usr/bin/test "$({{nodejs_path}}bin/node -v 2> /dev/null)" = {{nodejs_version_tag}}
   register: wanted_version_installed

@@ -1,5 +1,5 @@
 ---
-- name: Install os packages
+- name: Install Debian packages
   apt: pkg={{item}} state=present update_cache=yes
   with_items:
     - wget
