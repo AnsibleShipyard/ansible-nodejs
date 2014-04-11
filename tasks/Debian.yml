@@ -4,6 +4,7 @@
   with_items:
     - wget
     - curl
+    - make
     - g++
     - gcc
     - libcurl4-openssl-dev
