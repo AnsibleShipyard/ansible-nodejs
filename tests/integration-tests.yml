@@ -10,4 +10,6 @@
     - name: Check node
       command: which node
       register: node_path
-    - debug: msg="All Tests passed!"
+    - debug: msg="Node was installed in {{node_path.stdout}}"
+    - fail: msg="Node Not Found, tests failed."
+      when: node_path.stdout != "/usr/local/bin/node"
