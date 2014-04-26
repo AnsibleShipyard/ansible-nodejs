@@ -12,3 +12,4 @@ nodejs_tmp_dir: "/tmp/"
 nodejs_global_packages:
   - nodemon
   - debug
+  - foreman

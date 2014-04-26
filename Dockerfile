@@ -1,13 +1,13 @@
 #
-# AnsibleShipyard/base-ubuntu-nodejs
-#   docker build -t AnsibleShipyard/base-ubuntu-nodejs .
+# ansibleshipyard/nodejs
+#   docker build -t ansibleshipyard/nodejs .
 #
 # Requires:
-# AnsibleShipyard/base-ubuntu
+# ansibleshipyard/base-ubuntu
 #   https://github.com/AnsibleShipyard/base-ubuntu
 #
 
-FROM AnsibleShipyard/base-ubuntu
+FROM ansibleshipyard/base-ubuntu
 MAINTAINER AnsibleShipyard
 
 # Working dir
