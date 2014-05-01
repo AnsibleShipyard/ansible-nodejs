@@ -5,6 +5,11 @@ DOCKERNAME="jasongiedymin/ansible-nodejs"
 time docker build -t $DOCKERNAME .
 
 echo
+echo "This image is a trusted docker.io Image."
+echo
+echo "To pull it"
+echo "    docker pull $DOCKERNAME"
+echo
 echo "To use this docker:"
 echo "    docker run -d -P $DOCKERNAME"
 echo
