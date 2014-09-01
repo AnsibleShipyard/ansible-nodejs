@@ -9,6 +9,7 @@
   with_items:
     - deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu wheezy main
     - deb-src http://ppa.launchpad.net/chris-lea/node.js/ubuntu wheezy main
+  when: ansible_distribution == "Ubuntu"
 
 - name: Add NodeSource sign key
   apt_key: id=68576280 url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
