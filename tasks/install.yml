@@ -1,0 +1,5 @@
+- include: install_from_nodesource_debs.yml
+  when: nodejs_from_source == False
+
+- include: install_from_source.yml
+  when: nodejs_from_source == True
