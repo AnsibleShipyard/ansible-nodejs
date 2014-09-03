@@ -20,7 +20,7 @@
   when: wanted_version_installed.rc == 1
 
 - name: Unpack nodejs {{nodejs_version_tag}}
-  command: tar -xvzf {{nodejs_file_name}} chdir={{nodejs_tmp_dir}}
+  command: tar -xzf {{nodejs_file_name}} chdir={{nodejs_tmp_dir}}
   when: wanted_version_installed.rc == 1
 
 - name: Compile and install nodejs {{nodejs_version_tag}}
