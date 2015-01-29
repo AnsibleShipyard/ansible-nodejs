@@ -12,7 +12,7 @@
   changed_when: "wanted_version_installed.rc == 1"
 
 - name: Download nodejs {{nodejs_version_tag}}
-  get_url: url={{nodejs_tarball_url}} dest={{nodejs_tmp_dir}}{{nodejs_file_name}}
+  get_url: url={{nodejs_tarball_url}} dest={{nodejs_tmp_dir}}{{nodejs_file_name}} timeout=120
   when: wanted_version_installed.rc == 1
 
 - name: Verify SHASUM of nodejs {{nodejs_version_tag}}
