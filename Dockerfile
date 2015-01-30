@@ -1,29 +1,32 @@
 #
-# jasongiedymin/ansible-nodejs
-#   docker build -t jasongiedymin/ansible-nodejs .
-#
-# Requires:
-# jasongiedymin/ansible-nodejs
-#   https://github.com/AnsibleShipyard/ansible-base-ubuntu
-#
+# ------------------------------------------------------
+#                       Dockerfile
+# ------------------------------------------------------
+# image:    ansible-nodejs
+# tag:      latest
+# name:     ansibleshipyard/ansible-nodejs
+# version:  v0.1.5
+# repo:     https://github.com/AnsibleShipyard/ansible-nodejs
+# how-to:   docker build --force-rm -t ansibleshipyard/ansible-nodejs .
+# requires: ansibleshipyard/ansible-base-ubuntu
+# authors:  github:@jasongiedymin,
+#           github:
+# ------------------------------------------------------
 
-FROM jasongiedymin/ansible-base-ubuntu
-MAINTAINER AnsibleShipyard
+FROM ansibleshipyard/ansible-base-ubuntu
+MAINTAINER ansibleshipyard
 
-# Working dir
-ENV WORKDIR /tmp/build/ansible-nodejs
+# -----> Env
+ENV WORKDIR /tmp/build/roles/ansible-nodejs
+WORKDIR /tmp/build/roles/ansible-nodejs
 
-# ADD
-ADD meta $WORKDIR/meta
-ADD tasks $WORKDIR/tasks
-ADD tests $WORKDIR/tests
-ADD vars $WORKDIR/vars
+# -----> Add assets
+ADD ./ci $WORKDIR/ci
+ADD ./meta $WORKDIR/meta
+ADD ./tasks $WORKDIR/tasks
+ADD ./vars $WORKDIR/vars
 
-# Here we continue to use add because
-# there are a limited number of RUNs
-# allowed.
-ADD tests/inventory /etc/ansible/hosts
-ADD tests/playbook.yml $WORKDIR/playbook.yml
+# -----> Install Galaxy Dependencies
 
-# Execute
-RUN ansible-playbook $WORKDIR/playbook.yml -c local
+# -----> Execute
+RUN ansible-playbook -i $WORKDIR/ci/inventory $WORKDIR/ci/playbook.yml -c local -vvvv

@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  connection: local
+  sudo: yes
+
+  tasks:
+    - name: Check node
+      command: which node
+      register: node_path
+
+    - debug: 
+        msg: "Node was installed in {{node_path.stdout}}"
+
+    - fail: 
+        msg: "Node Not Found, tests failed."
+      when: node_path.stdout != "/usr/local/bin/node"
