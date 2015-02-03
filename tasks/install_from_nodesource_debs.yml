@@ -19,6 +19,7 @@
   with_items:
     - deb https://deb.nodesource.com/node {{ansible_distribution_release}} main
     - deb-src https://deb.nodesource.com/node {{ansible_distribution_release}} main
+  when: ansible_architecture in ['x86_64', 'x86']
 
 - name: Install NodeJS
   apt: name={{item}} state=installed
