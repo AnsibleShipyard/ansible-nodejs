@@ -1,0 +1,27 @@
+- name: Install HTTPS transport for APT
+  apt: name=apt-transport-https state=installed
+
+- name: Check if your distribution is supported
+  uri: url=https://deb.nodesource.com/node/dists/{{ansible_distribution_release}}/Release
+
+- name: Remove Launchpad PPA Repository for NodeJS...
+  apt_repository: repo='{{item}}' state=absent
+  with_items:
+    - deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu wheezy main
+    - deb-src http://ppa.launchpad.net/chris-lea/node.js/ubuntu wheezy main
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add NodeSource sign key
+  apt_key: id=68576280 url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+
+- name: Add NodeSource apt sources list
+  apt_repository: repo='{{item}}' update_cache=yes state=present
+  with_items:
+    - deb https://deb.nodesource.com/node {{ansible_distribution_release}} main
+    - deb-src https://deb.nodesource.com/node {{ansible_distribution_release}} main
+  when: ansible_architecture in ['x86_64', 'x86']
+
+- name: Install NodeJS
+  apt: name={{item}} state=installed
+  with_items:
+    - nodejs
