@@ -12,9 +12,11 @@ Vagrant.configure("2") do |config|
     c.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     c.vm.provision "shell" do |s|
       s.inline = "
-        add-apt-repository ppa:rquillo/ansible -qq;
-        apt-get update -yqq;
-        apt-get install curl python-software-properties ansible -yqq;
+        apt-get update -y;
+        apt-get install python-software-properties;
+        add-apt-repository ppa:rquillo/ansible;
+        apt-get update -y;
+        apt-get install ansible -y;
       "
       s.privileged = true
     end
