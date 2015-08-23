@@ -1,5 +1,5 @@
 - include: install_from_nodesource_debs.yml
-  when: nodejs_install_source == "nodesource_debs"
+  when: nodejs_install_method == "binary" and ansible_os_family == "Debian"
 
 - include: install_from_source.yml
-  when: nodejs_install_source == "build"
+  when: nodejs_install_method == "source"

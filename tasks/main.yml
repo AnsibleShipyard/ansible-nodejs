@@ -6,7 +6,7 @@
   register: nodejs_path_out
 
 - name: NPM Install global packages
-  npm: name={{item}} global=yes
+  npm: name={{item}} state=present global=yes
   with_items: nodejs_global_packages
   environment:
-    PATH: "{{ nodejs_path }}/bin:{{ nodejs_path_out.stdout }}"
+    PATH: "{{ nodejs_path }}bin:{{ nodejs_path_out.stdout }}"

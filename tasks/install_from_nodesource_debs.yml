@@ -22,6 +22,4 @@
   when: ansible_architecture in ['x86_64', 'x86']
 
 - name: Install NodeJS
-  apt: name={{item}} state=installed
-  with_items:
-    - nodejs
+  apt: name=nodejs state=installed

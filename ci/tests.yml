@@ -9,9 +9,8 @@
       command: which node
       register: node_path
 
-    - debug: 
-        msg: "Node was installed in {{node_path.stdout}}"
+    - debug: msg="Node was installed in {{node_path.stdout}}"
 
-    - fail: 
-        msg: "Node Not Found, tests failed."
-      when: node_path.stdout != "/usr/local/bin/node"
+    - command: node --version
+      register: node_version
+      failed_when: node_version.rc != 0 or node_version.stdout == '' 
