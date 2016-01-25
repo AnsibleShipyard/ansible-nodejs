@@ -13,6 +13,6 @@ nodejs_file_tag: "node-{{nodejs_version_tag}}"
 nodejs_file_name: "{{nodejs_file_tag}}.tar.gz"
 nodejs_base_url: "http://nodejs.org/dist/v{{nodejs_version}}/"
 nodejs_tarball_url: "{{nodejs_base_url}}{{nodejs_file_name}}"
-nodejs_shasum_file: "{{(nodejs_version | version_compare('1.0.0', '>=') | ternary('SHASUMS256.txt', 'SHASUMS.txt')}}"
-nodejs_shasum_url: {{nodejs_base_url}}{{nodejs_shasum_file}}
-nodejs_shasum_exec: {{"(nodejs_version | version_compare('1.0.0', '>=') | ternary('sha256', 'sha1')"}}
+nodejs_shasum_file: "{{(nodejs_version | version_compare('1.0.0', '>=')) | ternary('SHASUMS256.txt', 'SHASUMS.txt')}}"
+nodejs_shasum_url: "{{nodejs_base_url}}{{nodejs_shasum_file}}"
+nodejs_shasum_exec: "{{(nodejs_version | version_compare('1.0.0', '>=')) | ternary('sha256', 'sha1')}}sum"
