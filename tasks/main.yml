@@ -7,6 +7,6 @@
 
 - name: NPM Install global packages
   npm: name={{item}} global=yes
-  with_items: nodejs_global_packages
+  with_items: "{{ nodejs_global_packages }}"
   environment:
     PATH: "{{ nodejs_path }}/bin:{{ nodejs_path_out.stdout }}"
